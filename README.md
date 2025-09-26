@@ -1,4 +1,10 @@
 # BreakingBadly
+**NB!!** -- Create a branch first.
+```bash
+git checkout -b <branch-name>
+git push -u origin <branch-name>
+```
+
 ## 📝 Purpose
 
 Welcome to BreakingBadly! This exercise is designed to help you practice Test-Driven Development (TDD) and strengthen your unit testing skills.
