@@ -1,95 +1,72 @@
 """
 BreakItTillYouMakeIt - Text & Math Utility Functions
-Author: Your Name
+Author: Kabelo Bongani Maile
 Instructions: Implement each function below according to the docstrings.
 Then write unit tests to verify correctness.
 """
 
 def count_words(text: str) -> dict:
-    """
-    Count the frequency of each word in a string (case-insensitive).
+    text = text.lower()
+    words = text.split()
+    words_count = {}
 
-    Args:
-        text (str): The input string.
-
-    Returns:
-        dict: A dictionary where keys are words and values are counts.
-
-    Examples:
-        count_words("Hello hello world") -> {"hello": 2, "world": 1}
-    """
-    raise NotImplementedError("Implement count_words function")
+    for word in words:
+        if word in words_count:
+            words_count[word] += 1
+        else:
+            words_count[word] = 1
+            
+    return words_count
 
 
 def pascals_triangle_row(n: int) -> list[int]:
-    """
-    Return the last row of Pascal's Triangle of height n.
-
-    Args:
-        n (int): Height of the triangle (0-indexed).
-
-    Returns:
-        list[int]: List representing the last row.
-
-    Examples:
-        pascals_triangle_row(4) -> [1, 4, 6, 4, 1]
-    """
-    raise NotImplementedError("Implement pascals_triangle_row function")
+    if n == 0:
+        return [1]
+    elif n == 1:
+        return [1, 1]
+    else:
+        row = [1] 
+        for k in range(1, n + 1):
+            # Calculate next coefficient using the previous one
+            coeff = row[k - 1] * (n - k + 1) // k
+            row.append(coeff)
+        
+    return row  # Return the completed row
 
 
 def calculator(a: float, b: float, op: str) -> float:
-    """
-    Perform basic arithmetic operations.
-
-    Args:
-        a (float): First number.
-        b (float): Second number.
-        op (str): Operator, one of "+", "-", "*", "/".
-
-    Returns:
-        float: Result of the operation.
-
-    Raises:
-        ValueError: If division by zero is attempted.
-
-    Examples:
-        calculator(5, 3, "+") -> 8
-        calculator(10, 2, "/") -> 5
-    """
-    raise NotImplementedError("Implement calculator function")
-
+    if op == "+":
+        return a + b
+    elif op == "-":
+        return a - b
+    elif op == "*":
+        return a * b
+    elif op == "/":
+        if b == 0:
+            raise ValueError("Division by zero is not allowed.")
+        return a / b
+    else:    
+        raise ValueError("Invalid operator. Use one of '+', '-', '*', '/'.")   
+    
 
 def reverse_words(text: str) -> str:
-    """
-    Reverse the order of words in a string (words themselves unchanged).
-
-    Args:
-        text (str): Input string.
-
-    Returns:
-        str: Words reversed.
-
-    Examples:
-        reverse_words("the quick brown fox") -> "fox brown quick the"
-    """
-    raise NotImplementedError("Implement reverse_words function")
+    words = text.split()
+    words.reverse()
+    text = " ".join(words)
+    return text
 
 
 def factorial(n: int) -> int:
-    """
-    Compute the factorial of a non-negative integer.
+    if n < 0:
+        raise ValueError("Factorial is not defined for negative numbers.")
+    elif n == 0 or n == 1:
+        return 1
+    else:
+        result = 1
+        for i in range(2, n + 1):
+            result *= i
 
-    Args:
-        n (int): Non-negative integer.
-
-    Returns:
-        int: Factorial of n.
-
-    Examples:
-        factorial(5) -> 120
-        factorial(0) -> 1
-    """
-    raise NotImplementedError("Implement factorial function")
+    return result
 
 
 if __name__ == "__main__":
